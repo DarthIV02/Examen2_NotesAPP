@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_title;
     TextView tv_text;
 
+    final float scale = getContext().getResources().getDisplayMetrics().density;
+
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 tr_title.setGravity(Gravity.CENTER);
             }
             tv_title = new TextView(MainActivity.this);
-            tv_title.setWidth(115);
-            tv_title.setHeight(30);
+            tv_title.setWidth((int) (115 * scale + 0.5f));
+            tv_title.setHeight((int) (30 * scale + 0.5f));
             tv_title.setBackgroundColor(R.color.purple_200);
             tv_title.setClickable(true);
             tv_title.setText(notes.get(i).getTitle());
@@ -74,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
             });
             tv_title.setTag(notes.get(i).getId());
             tv_text = new TextView(MainActivity.this);
-            tv_text.setWidth(115);
-            tv_text.setHeight(30);
+            tv_text.setWidth((int) (115 * scale + 0.5f));
+            tv_text.setHeight((int) (30 * scale + 0.5f));
             tv_text.setBackgroundColor(R.color.purple_200);
             tv_text.setClickable(true);
             tv_text.setText(notes.get(i).getText());
