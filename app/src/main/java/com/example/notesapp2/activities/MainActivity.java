@@ -34,11 +34,10 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_title;
     TextView tv_text;
 
-    final float scale = getContext().getResources().getDisplayMetrics().density;
-
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final float scale = MainActivity.this.getResources().getDisplayMetrics().density;
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -59,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 tr_text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
                 tr_title = new TableRow(MainActivity.this);
                 tr_title.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
-                tr_title.setGravity(Gravity.CENTER);
             }
             tv_title = new TextView(MainActivity.this);
             tv_title.setWidth((int) (115 * scale + 0.5f));
