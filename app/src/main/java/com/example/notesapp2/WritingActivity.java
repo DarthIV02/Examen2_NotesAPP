@@ -45,9 +45,11 @@ public class WritingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String text = binding.descriptioninput.getText().toString();
                 String title = binding.titleinput.getText().toString();
-                if (!note_Id.isEmpty()){
-                    mDBOperations.updateNote(note_Id, text, title);
-                } else {
+                try {
+                    if (!note_Id.isEmpty()){
+                        mDBOperations.updateNote(note_Id, text, title);
+                    }
+                } catch (NullPointerException e) {
                     mDBOperations.createNote(text, title);
                 }
                 Intent intent=new Intent(WritingActivity.this, MainActivity.class);
