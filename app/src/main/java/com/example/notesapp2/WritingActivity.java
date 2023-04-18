@@ -29,11 +29,15 @@ public class WritingActivity extends AppCompatActivity {
 
         mDBOperations = new DatabaseOperations(WritingActivity.this);
 
-        if (!note_Id.isEmpty()) {
-            Note note = mDBOperations.getNote(note_Id);
-            binding.titleinput.setText(note.getTitle());
-            binding.fecha.setText(note.getLastModified());
-            binding.descriptioninput.setText(note.getText());
+        try {
+            if (!note_Id.isEmpty()) {
+                Note note = mDBOperations.getNote(note_Id);
+                binding.titleinput.setText(note.getTitle());
+                binding.fecha.setText(note.getLastModified());
+                binding.descriptioninput.setText(note.getText());
+            }
+        } catch (NullPointerException e){
+            // Don't update anything
         }
 
         binding.saveButton.setOnClickListener(new View.OnClickListener() {
