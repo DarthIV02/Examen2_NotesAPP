@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -75,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
             });
             tv_title.setTag(notes.get(i).getId());
             tv_title.setBackgroundResource(R.drawable.redondeo);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(10,10,10,10);
+            tv_title.setLayoutParams(params);
+
             tv_text = new TextView(MainActivity.this);
             tv_text.setWidth((int) (115 * scale + 0.5f));
             tv_text.setHeight((int) (30 * scale + 0.5f));
@@ -90,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
             });
             tv_text.setTag(notes.get(i).getId());
             tv_text.setBackgroundResource(R.drawable.redondeo);
+            LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params2.setMargins(10,10,10,10);
+            tv_text.setLayoutParams(params2);
 
             tr_title.addView(tv_title);
             tr_text.addView(tv_text);
