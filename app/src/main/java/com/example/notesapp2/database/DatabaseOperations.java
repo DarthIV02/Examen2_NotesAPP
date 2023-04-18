@@ -59,21 +59,21 @@ public class DatabaseOperations {
 
         return Long.toString(lastRowID);
     }
-    public List<String> getNote(String id){
+    public Note getNote(String id){
         if(!mDatabase.isOpen()){
             this.open();
         }
 
         String text = "";
-        String cd = "";
+        String title = "";
         String lm = "";
 
         Cursor cursor = mDatabase.query(
                 DatabaseHelper.TABLE_NOTE,
                 new String[]{
                         DatabaseHelper.COLUMN_TEXT, DatabaseHelper.COLUMN_TITLE, DatabaseHelper.COLUMN_LM},
-                DatabaseHelper.COLUMN_ID + " = " + id,
-                null,
+                DatabaseHelper.COLUMN_ID + " = ?",
+                new String[]{ id },
                 null,
                 null,
                 null,
@@ -81,17 +81,17 @@ public class DatabaseOperations {
 
         while(cursor.moveToNext()){
             text = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_TEXT));
-            cd = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_TITLE));
+            title = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_TITLE));
             lm = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_LM));
         }
 
-        List<String> array = new ArrayList<>();
-        array.add(text);
-        array.add(cd);
-        array.add(lm);
+        Note note = new Note();
+        note.setText(text);
+        note.setTitle(title);
+        note.setLastModified(lm);
         this.close();
 
-        return array;
+        return note;
     }
 
     public void updateNote(String id, String text, String title){
@@ -105,6 +105,10 @@ public class DatabaseOperations {
         ContentValues newTitle = new ContentValues();
         newTitle.put(DatabaseHelper.COLUMN_TITLE, title);
 
+        ContentValues newDate = new ContentValues();
+        String date = new Date().toString();
+        newTitle.put(DatabaseHelper.COLUMN_TITLE, date);
+
         int textUpdated = mDatabase.update(
                 DatabaseHelper.TABLE_NOTE,
                 newText,
@@ -113,6 +117,11 @@ public class DatabaseOperations {
         int titleUpdated = mDatabase.update(
                 DatabaseHelper.TABLE_NOTE,
                 newTitle,
+                DatabaseHelper.COLUMN_ID + " = " + id,
+                null);
+        int dateUpdated = mDatabase.update(
+                DatabaseHelper.TABLE_NOTE,
+                newDate,
                 DatabaseHelper.COLUMN_ID + " = " + id,
                 null);
 
