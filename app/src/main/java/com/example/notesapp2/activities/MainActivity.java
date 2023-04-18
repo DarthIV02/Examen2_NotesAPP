@@ -8,8 +8,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -50,61 +52,59 @@ public class MainActivity extends AppCompatActivity {
 
         tl = (TableLayout) binding.tableNotes;
 
-        for(int i = 0; i < notes.size(); i++){
-            if(i % 3 == 0){
-                if(i != 0){
-                    tl.addView(tr_title, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-                    tl.addView(tr_text, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        try{
+            for(int i = 0; i < notes.size(); i++){
+                if(i % 3 == 0){
+                    if(i != 0){
+                        tl.addView(tr_title, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+                        tl.addView(tr_text, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+                    }
+                    tr_text = new TableRow(MainActivity.this);
+                    tr_text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
+                    tr_title = new TableRow(MainActivity.this);
+                    tr_title.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
                 }
-                tr_text = new TableRow(MainActivity.this);
-                tr_text.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
-                tr_title = new TableRow(MainActivity.this);
-                tr_title.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT));
+                tv_title = new TextView(MainActivity.this);
+                tv_title.setWidth((int) (115 * scale + 0.5f));
+                tv_title.setHeight((int) (30 * scale + 0.5f));
+                //tv_title.setBackgroundColor(R.color.purple_200);
+                tv_title.setClickable(true);
+                tv_title.setText(notes.get(i).getTitle());
+                tv_title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                tv_title.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RetrieveNote(v);
+                    }
+                });
+                tv_title.setTag(notes.get(i).getId());
+                tv_title.setBackgroundResource(R.drawable.redondeo_item_bottom);
+
+                tv_text = new TextView(MainActivity.this);
+                tv_text.setWidth((int) (115 * scale + 0.5f));
+                tv_text.setHeight((int) (30 * scale + 0.5f));
+                tv_text.setBackgroundColor(R.color.purple_200);
+                tv_text.setClickable(true);
+                tv_text.setText(notes.get(i).getText());
+                tv_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+                tv_text.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RetrieveNote(v);
+                    }
+                });
+                tv_text.setTag(notes.get(i).getId());
+                tv_text.setBackgroundResource(R.drawable.redondeo_item);
+
+                tr_title.addView(tv_title);
+                tr_text.addView(tv_text);
             }
-            tv_title = new TextView(MainActivity.this);
-            tv_title.setWidth((int) (115 * scale + 0.5f));
-            tv_title.setHeight((int) (30 * scale + 0.5f));
-            //tv_title.setBackgroundColor(R.color.purple_200);
-            tv_title.setClickable(true);
-            tv_title.setText(notes.get(i).getTitle());
-            tv_title.setTextSize(17);
-            tv_title.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    RetrieveNote(v);
-                }
-            });
-            tv_title.setTag(notes.get(i).getId());
-            tv_title.setBackgroundResource(R.drawable.redondeo_titulo);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(10,10,10,10);
-            tv_title.setLayoutParams(params);
 
-            tv_text = new TextView(MainActivity.this);
-            tv_text.setWidth((int) (115 * scale + 0.5f));
-            tv_text.setHeight((int) (30 * scale + 0.5f));
-            //tv_text.setBackgroundColor(R.color.purple_200);
-            tv_text.setClickable(true);
-            tv_text.setText(notes.get(i).getText());
-            tv_text.setTextSize(12);
-            tv_text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    RetrieveNote(v);
-                }
-            });
-            tv_text.setTag(notes.get(i).getId());
-            tv_text.setBackgroundResource(R.drawable.redondeo_titulo);
-            LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params2.setMargins(10,10,10,10);
-            tv_text.setLayoutParams(params2);
-
-            tr_title.addView(tv_title);
-            tr_text.addView(tv_text);
+            tl.addView(tr_title, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+            tl.addView(tr_text, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        } catch (Exception e){
+            // No notes to be added
         }
-
-        tl.addView(tr_title, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
-        tl.addView(tr_text, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
