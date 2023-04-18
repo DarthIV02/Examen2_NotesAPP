@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#9F2B68"
     android:padding="20dp"
-    tools:context=".WritingActivity">
+    tools:context=".activities.WritingActivity">
 
     <TextView
         android:layout_width="match_parent"

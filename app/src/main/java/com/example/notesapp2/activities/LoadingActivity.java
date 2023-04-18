@@ -1,4 +1,4 @@
-package com.example.notesapp2;
+package com.example.notesapp2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +26,7 @@ public class LoadingActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(LoadingActivity.this,MainActivity.class);
+                Intent intent=new Intent(LoadingActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

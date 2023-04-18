@@ -1,4 +1,4 @@
-package com.example.notesapp2;
+package com.example.notesapp2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,6 @@ import android.view.View;
 import com.example.notesapp2.database.DatabaseOperations;
 import com.example.notesapp2.databinding.ActivityWritingBinding;
 import com.example.notesapp2.models.Note;
-
-import org.jetbrains.annotations.NotNull;
 
 public class WritingActivity extends AppCompatActivity {
 

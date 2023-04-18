@@ -107,7 +107,7 @@ public class DatabaseOperations {
 
         ContentValues newDate = new ContentValues();
         String date = new Date().toString();
-        newTitle.put(DatabaseHelper.COLUMN_TITLE, date);
+        newTitle.put(DatabaseHelper.COLUMN_LM, date);
 
         int textUpdated = mDatabase.update(
                 DatabaseHelper.TABLE_NOTE,
@@ -126,6 +126,38 @@ public class DatabaseOperations {
                 null);
 
         this.close();
+    }
+
+    public List<Note> getAllNotes(){
+        if(!mDatabase.isOpen()){
+            this.open();
+        }
+
+        List<Note> noteArray = new ArrayList<>();
+
+        Cursor cursor = mDatabase.query(
+                DatabaseHelper.TABLE_NOTE,
+                new String[]{
+                        DatabaseHelper.COLUMN_ID, DatabaseHelper.COLUMN_TEXT,
+                        DatabaseHelper.COLUMN_TITLE, DatabaseHelper.COLUMN_LM},
+                null,
+                null,
+                null,
+                null,
+                DatabaseHelper.COLUMN_LM + " DESC",
+                null);
+
+        while(cursor.moveToNext()){
+            Note note = new Note();
+            note.setId(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_ID)));
+            note.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_TEXT)));
+            note.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_TITLE)));
+            note.setLastModified(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COLUMN_LM)));
+            noteArray.add(note);
+        }
+        this.close();
+
+        return noteArray;
     }
 
 }
