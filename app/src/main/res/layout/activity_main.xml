@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentRelative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Notes"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:id="@+id/tableNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:layout_alignTop="@id/title">
+
+        <TableRow
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="115dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="15dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:text="Note1Title is a little to long"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:onClick="RetrieveNote"
+                android:tag="1"/>
+
+            <TextView
+                android:layout_width="115dp"
+                android:layout_height="30dp"
+                android:text="Note2"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="15dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:onClick="RetrieveNote"
+                android:tag="2"/>
+
+            <TextView
+                android:layout_width="114dp"
+                android:layout_height="30dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:text="Note3"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:onClick="RetrieveNote"
+                android:tag="3"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_marginEnd="15dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:text="Note1 Text"
+                android:textSize="12sp"
+                android:onClick="RetrieveNote"
+                android:tag="1"/>
+
+            <TextView
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_marginEnd="15dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:text="Note2 Text"
+                android:textSize="12sp"
+                android:onClick="RetrieveNote"
+                android:tag="2"/>
+
+            <TextView
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:text="Note3 Text"
+                android:textSize="12sp"
+                android:onClick="RetrieveNote"
+                android:tag="3"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="115dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="15dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:text="Note4Title"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:onClick="RetrieveNote"
+                android:tag="4"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_marginEnd="15dp"
+                android:background="#FFEB3B"
+                android:clickable="true"
+                android:text="Note4 Text"
+                android:textSize="12sp"
+                android:onClick="RetrieveNote"
+                android:tag="4"/>
+
+        </TableRow>
+    </TableLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</RelativeLayout>
