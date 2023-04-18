@@ -10,6 +10,8 @@ import com.example.notesapp2.database.DatabaseOperations;
 import com.example.notesapp2.databinding.ActivityWritingBinding;
 import com.example.notesapp2.models.Note;
 
+import java.util.Date;
+
 public class WritingActivity extends AppCompatActivity {
 
     ActivityWritingBinding binding;
@@ -35,7 +37,7 @@ public class WritingActivity extends AppCompatActivity {
                 binding.descriptioninput.setText(note.getText());
             }
         } catch (NullPointerException e){
-            // Don't update anything
+            binding.fecha.setText(new Date().toString());
         }
 
         binding.saveButton.setOnClickListener(new View.OnClickListener() {

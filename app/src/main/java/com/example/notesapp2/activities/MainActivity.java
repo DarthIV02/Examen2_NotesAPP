@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             tv_title.setTag(notes.get(i).getId());
+            tv_title.setBackgroundResource(R.drawable.redondeo);
             tv_text = new TextView(MainActivity.this);
             tv_text.setWidth((int) (115 * scale + 0.5f));
             tv_text.setHeight((int) (30 * scale + 0.5f));
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             tv_text.setTag(notes.get(i).getId());
+            tv_text.setBackgroundResource(R.drawable.redondeo);
 
             tr_title.addView(tv_title);
             tr_text.addView(tv_text);
