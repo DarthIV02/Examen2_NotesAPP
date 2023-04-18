@@ -160,4 +160,16 @@ public class DatabaseOperations {
         return noteArray;
     }
 
+    public void deleteNotes(){
+        if (!mDatabase.isOpen()){
+            // is te regresa un booleano normalemente
+            // ! para negación
+            this.open();
+        }
+
+        mDatabase.delete(DatabaseHelper.TABLE_NOTE, "1", null);
+
+        this.close();
+    }
+
 }
